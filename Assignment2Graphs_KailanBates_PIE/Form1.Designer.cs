@@ -30,14 +30,16 @@
         {
             btnAddData = new Button();
             txtDataName = new TextBox();
-            numDataValue = new NumericUpDown();
             label1 = new Label();
             label2 = new Label();
             btnMakePie = new Button();
             lstData = new ListBox();
             label3 = new Label();
             btnRemoveItem = new Button();
-            ((System.ComponentModel.ISupportInitialize)numDataValue).BeginInit();
+            txtDataValue = new TextBox();
+            lblMessages = new Label();
+            picBoxPie = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picBoxPie).BeginInit();
             SuspendLayout();
             // 
             // btnAddData
@@ -48,6 +50,7 @@
             btnAddData.TabIndex = 0;
             btnAddData.Text = "Add Data";
             btnAddData.UseVisualStyleBackColor = true;
+            btnAddData.Click += btnAddData_Click;
             // 
             // txtDataName
             // 
@@ -55,14 +58,6 @@
             txtDataName.Name = "txtDataName";
             txtDataName.Size = new Size(143, 23);
             txtDataName.TabIndex = 1;
-            // 
-            // numDataValue
-            // 
-            numDataValue.Location = new Point(186, 57);
-            numDataValue.Name = "numDataValue";
-            numDataValue.Size = new Size(98, 23);
-            numDataValue.TabIndex = 2;
-            numDataValue.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // label1
             // 
@@ -90,12 +85,13 @@
             btnMakePie.TabIndex = 5;
             btnMakePie.Text = "MAKE PIE";
             btnMakePie.UseVisualStyleBackColor = true;
+            btnMakePie.Click += btnMakePie_Click;
             // 
             // lstData
             // 
             lstData.FormattingEnabled = true;
             lstData.ItemHeight = 15;
-            lstData.Location = new Point(37, 118);
+            lstData.Location = new Point(37, 136);
             lstData.Name = "lstData";
             lstData.Size = new Size(125, 214);
             lstData.TabIndex = 6;
@@ -104,7 +100,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(37, 100);
+            label3.Location = new Point(37, 118);
             label3.Name = "label3";
             label3.Size = new Size(58, 15);
             label3.TabIndex = 7;
@@ -112,30 +108,56 @@
             // 
             // btnRemoveItem
             // 
-            btnRemoveItem.Location = new Point(37, 338);
+            btnRemoveItem.Location = new Point(37, 356);
             btnRemoveItem.Name = "btnRemoveItem";
             btnRemoveItem.Size = new Size(91, 23);
             btnRemoveItem.TabIndex = 8;
             btnRemoveItem.Text = "Remove Item";
             btnRemoveItem.UseVisualStyleBackColor = true;
+            btnRemoveItem.Click += btnRemoveItem_Click;
+            // 
+            // txtDataValue
+            // 
+            txtDataValue.Location = new Point(188, 57);
+            txtDataValue.Name = "txtDataValue";
+            txtDataValue.Size = new Size(60, 23);
+            txtDataValue.TabIndex = 9;
+            // 
+            // lblMessages
+            // 
+            lblMessages.AutoSize = true;
+            lblMessages.Location = new Point(37, 93);
+            lblMessages.Name = "lblMessages";
+            lblMessages.Size = new Size(0, 15);
+            lblMessages.TabIndex = 10;
+            // 
+            // picBoxPie
+            // 
+            picBoxPie.Location = new Point(227, 136);
+            picBoxPie.Name = "picBoxPie";
+            picBoxPie.Size = new Size(237, 214);
+            picBoxPie.TabIndex = 11;
+            picBoxPie.TabStop = false;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(573, 450);
+            ClientSize = new Size(680, 450);
+            Controls.Add(picBoxPie);
+            Controls.Add(lblMessages);
+            Controls.Add(txtDataValue);
             Controls.Add(btnRemoveItem);
             Controls.Add(label3);
             Controls.Add(lstData);
             Controls.Add(btnMakePie);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(numDataValue);
             Controls.Add(txtDataName);
             Controls.Add(btnAddData);
             Name = "Form1";
             Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)numDataValue).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picBoxPie).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -144,12 +166,14 @@
 
         private Button btnAddData;
         private TextBox txtDataName;
-        private NumericUpDown numDataValue;
         private Label label1;
         private Label label2;
         private Button btnMakePie;
         private ListBox lstData;
         private Label label3;
         private Button btnRemoveItem;
+        private TextBox txtDataValue;
+        private Label lblMessages;
+        private PictureBox picBoxPie;
     }
 }

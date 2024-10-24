@@ -8,10 +8,20 @@ namespace Assignment2Graphs_KailanBates_PIE
         [STAThread]
         static void Main()
         {
+
+            Pie.AddNewData(new DataInput("Cats", 10));
+            Pie.AddNewData(new DataInput("Dogs", 5));
+            Pie.AddNewData(new DataInput("Rats", 5));
+            Pie.AddNewData(new DataInput("Horses", 5));
+
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+
+
+          
         }
     }
 }
