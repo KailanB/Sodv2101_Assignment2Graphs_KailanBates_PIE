@@ -8,8 +8,9 @@ namespace Assignment2Graphs_KailanBates_PIE
         [STAThread]
         static void Main()
         {
-
-            Pie.AddNewData(new DataInput("Cats", 10));
+            // for testing
+            Pie.AddNewData(new DataInput("Fish", 5));
+            Pie.AddNewData(new DataInput("Cats", 5));
             Pie.AddNewData(new DataInput("Dogs", 5));
             Pie.AddNewData(new DataInput("Rats", 5));
             Pie.AddNewData(new DataInput("Horses", 5));

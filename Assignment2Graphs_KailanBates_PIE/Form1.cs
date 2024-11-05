@@ -63,8 +63,8 @@ namespace Assignment2Graphs_KailanBates_PIE
         private void btnRemoveItem_Click(object sender, EventArgs e)
         {
 
-
-            if (lstData.SelectedItems != null)
+            // check that user has item selected
+            if (lstData.SelectedIndex > -1)
             {
                 Pie.RemoveData(lstData.SelectedIndex);
 
@@ -73,74 +73,11 @@ namespace Assignment2Graphs_KailanBates_PIE
         }
 
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            // 
-            // Pen pen = new Pen(Color.FromArgb(red, green, blue), 3)
-            // g.DrawLine(pen, 0, 10 * (i + 1), 100, 10 * (i + 1));
-            // g.DrawRectangle(pen, pieRectangle);
-
-            
-
-            //Graphics g = e.Graphics;
-
-            //g.DrawPie(Pens.Black, _pieRectangle, _pieStartingDegrees, _percentOfPie * 360);
-
-            //g.FillEllipse(Brushes.BlueViolet, 120, 100, 5 + _pieDegrees, 30);
-
-            //SolidBrush brush = new SolidBrush(Color.FromArgb(_red, _green, _blue));
-            //g.FillPie(brush, _pieRectangle, _pieStartingDegrees, _percentOfPie * 360);
-            // g.FillPie(brush, _pieRectangle, 0, 45);
-
-            // Region region = new Region(new );
-            //using (SolidBrush brush = new SolidBrush(Color.FromArgb(_red, _green, _blue)))
-            //{
-            //    // g.FillPie(brush, pieRectangle, 0, 50);
-
-            //    g.FillPie(brush, _pieRectangle, _pieStartingDegrees, _percentOfPie / 360);
-            //}
-
-
-            //foreach (DataInput data in Pie.DataInputs)
-            //{
-
-            //    float percentOfPie = data.Value / Pie.TotalPieValues;
-            //    MessageBox.Show(percentOfPie.ToString());
-            //    float pieStartingDegrees = pieDegrees;
-
-            //    _red = rnd.Next(0, 255);
-            //    _blue = rnd.Next(0, 255);
-            //    _green = rnd.Next(0, 255);
-
-
-
-            //using (SolidBrush brush = new SolidBrush(Color.FromArgb(red, green, blue)))
-            //    {
-            //        // g.FillPie(brush, pieRectangle, 0, 50);
-
-            //        g.FillPie(brush, pieRectangle, pieStartingDegrees, percentOfPie / 360);
-            //    }
-
-            //    pieDegrees += percentOfPie / 360;
-
-            //}
-
-            /*            for (int i = 0; i < 5; i++)
-                        {
-
-
-                        }*/
-
-
-
-
-
-        }
-
         private void btnMakePie_Click(object sender, EventArgs e)
         {
 
-            foreach(Label lab in labels)
+
+            foreach (Label lab in labels)
             {
                 this.Controls.Remove(lab);
             }
@@ -153,7 +90,11 @@ namespace Assignment2Graphs_KailanBates_PIE
 
             float percentOfPie = 0;
             float pieStartingDegrees = 0;
-            float pieDegrees = 0;
+            float pieDegreesFilled = 0;
+            float piePieceDegrees = 0;
+
+            // counter is used for labeling pie pieces
+            int counter = 0;
 
             Rectangle pieRectangle = new Rectangle(0, 0, 200, 200);
 
@@ -163,51 +104,77 @@ namespace Assignment2Graphs_KailanBates_PIE
 
             using (Graphics g = Graphics.FromImage(B))
             {
-                int num = 0;
+
+                int labelLocation = 0;
                 foreach (DataInput data in Pie.DataInputs)
                 {
-                    
-
+                    // percentOfPie is referring to % of the pie chart that this piece of data takes
                     percentOfPie = data.Value / Pie.TotalPieValues;
-                    pieStartingDegrees = pieDegrees;
-                    pieDegrees += percentOfPie * 360;
+                    // degree value of single piece
+                    piePieceDegrees = percentOfPie * 360;
+                    // starting degrees tracks the point that the last data value left at
+                    pieStartingDegrees = pieDegreesFilled;
+                    // degrees of all pieces that have been included so far
+                    pieDegreesFilled += percentOfPie * 360;                   
 
-                    // double degrees = 0;
-                    // double degreesToGo = percentOfPie * 360;
-
+ 
                     red = rnd.Next(0, 255);
                     blue = rnd.Next(0, 255);
                     green = rnd.Next(0, 255);
 
-                    //double xChange = 0;
-                    //double yChange = 0;
-                    //if(pieStartingDegrees <= 90)
-                    //{
-                    //    xChange = Math.Cos(degrees);
-                    //    yChange = Math.Sin(degrees);
-                    //}
 
+
+                    double midAngle = pieStartingDegrees + piePieceDegrees / 2;
+                    double radians = midAngle * Math.PI / 180;
+
+                    // cos and sin issues resolved. C# uses radians. 
+                    // https://stackoverflow.com/questions/11166034/c-sharp-math-cosdouble-returns-wrong-value
+                    // these are the x y variables for the pie piece labels
+                    double x = (100 + 0.7 * 100 * Math.Cos(radians));
+                    double y = (100 + 0.7 * 100 * Math.Sin(radians));
+
+
+                    // these variables are used to draw the separator line for the pie pieces
+                    double segmentAngle = pieDegreesFilled;
+                    double lineRadians = segmentAngle * Math.PI / 180;
+                    double xLine = (100 + 100 * Math.Cos(lineRadians));
+                    double yLine = (100 + 100 * Math.Sin(lineRadians));
+
+
+                    // draw pie pieces
                     using (SolidBrush brush = new SolidBrush(Color.FromArgb(red, green, blue)))
                     {
-                        g.FillPie(brush, pieRectangle, pieStartingDegrees, percentOfPie * 360);
+                        // fill pie piece starting where last piece left off and filling appropriate number of degrees according to piece size
+                        g.FillPie(brush, pieRectangle, pieStartingDegrees, piePieceDegrees);
 
-                        // g.DrawString(data.Name + " %" + (percentOfPie * 100).ToString("0.00"), new Font("Arial", 10), Brushes.Black, new Point((100 + (int)xChange), (100 + (int)yChange)));
+                    }
+                    // draw separator lines
+                    using (Pen pen = new Pen(Brushes.Black))
+                    {
+                        pen.Width = 2;
+                        g.DrawLine(pen, new Point(100, 100), new Point((int)xLine, (int)yLine));
                     }
 
+                    // create data label with % value and matching color to corresponding pie piece
                     Label label = new Label();
                     label.ForeColor = Color.FromArgb(red, green, blue);
-                    label.Text = data.Name + " " + (percentOfPie * 100).ToString("0.00") + "%";
-                    label.Location = new Point(500, (200 + num));
+                    label.Text = (counter + 1) + ". " + data.Name + " " + (percentOfPie * 100).ToString("0.00") + "%";
+                    label.Location = new Point(500, (200 + labelLocation));
                     label.AutoSize = true;
 
-                    num += 15;
+                    // increase label Y location 
+                    labelLocation += 15;
                     this.Controls.Add(label);
-
                     labels.Add(label);
 
-                }
-                picBoxPie.Image = B;
+                    // Draw number on each pie piece
+                    g.DrawString((counter + 1).ToString(), new Font("Arial", 12), Brushes.Black, new Point((int)x, (int)y));
+                    
 
+                    counter++;
+                }
+
+                picBoxPie.Image = B;
 
             }
 
@@ -216,66 +183,6 @@ namespace Assignment2Graphs_KailanBates_PIE
 
     }
 
-        private void MakePie(object sender, System.Windows.Forms.PaintEventArgs e)
-        {
-            //_pieDegrees = 0;
-
-            //foreach (DataInput data in Pie.DataInputs)
-            //{
-            //    //MessageBox.Show(_pieStartingDegrees.ToString());
-            //    _percentOfPie = data.Value / Pie.TotalPieValues;
-            //    //MessageBox.Show(_percentOfPie.ToString());
-            //    _pieStartingDegrees = _pieDegrees;
-                
-            //    _red = rnd.Next(0, 255);
-            //    _blue = rnd.Next(0, 255);
-            //    _green = rnd.Next(0, 255);    
-
-            //    _pieDegrees += _percentOfPie * 360;
-            //    //MessageBox.Show(_pieDegrees.ToString());
-
-            //    Graphics g = e.Graphics;
-
-
-            //    using (SolidBrush brush = new SolidBrush(Color.FromArgb(_red, _green, _blue)))
-            //    {
-            //        // g.FillPie(brush, pieRectangle, 0, 50);
-
-            //        //g.FillPie(brush, pieRectangle, _pieStartingDegrees, _percentOfPie / 360);
-            //    }
-
-            //    // this.Invalidate();
-
-            //}
-
-
-            /*
-            foreach (DataInput data in Pie.DataInputs)
-            {
-
-               
-                //MessageBox.Show(_pieStartingDegrees.ToString());
-                _percentOfPie = data.Value / Pie.TotalPieValues;
-                //MessageBox.Show(_percentOfPie.ToString());
-                _pieStartingDegrees = _pieDegrees;
-
-                _red = rnd.Next(0, 255);
-                _blue = rnd.Next(0, 255);
-                _green = rnd.Next(0, 255);
-
-                _pieDegrees += _percentOfPie * 360;
-                //MessageBox.Show(_pieDegrees.ToString());
-
-                //g.FillPie(brush, _pieRectangle, _pieStartingDegrees, _percentOfPie * 360);
-
-                Rectangle rect = new Rectangle(0, 0, 0, 0);
-
-
-                this.Invalidate();
-                
-            } 
-            */
-        }
     }
 
 
@@ -296,7 +203,6 @@ namespace Assignment2Graphs_KailanBates_PIE
         public static void RemoveData(int index)
         {
             TotalPieValues -= DataInputs[index].Value;
-
             DataInputs.RemoveAt(index);
         }
         
@@ -318,6 +224,7 @@ namespace Assignment2Graphs_KailanBates_PIE
             this.Name = name;
             this.Value = value;
         }
+
     }
 
 
