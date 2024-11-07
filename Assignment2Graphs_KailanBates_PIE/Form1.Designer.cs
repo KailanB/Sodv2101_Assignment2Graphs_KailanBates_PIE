@@ -39,12 +39,13 @@
             txtDataValue = new TextBox();
             lblMessages = new Label();
             picBoxPie = new PictureBox();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)picBoxPie).BeginInit();
             SuspendLayout();
             // 
             // btnAddData
             // 
-            btnAddData.Location = new Point(304, 57);
+            btnAddData.Location = new Point(266, 72);
             btnAddData.Name = "btnAddData";
             btnAddData.Size = new Size(75, 23);
             btnAddData.TabIndex = 0;
@@ -54,7 +55,7 @@
             // 
             // txtDataName
             // 
-            txtDataName.Location = new Point(37, 57);
+            txtDataName.Location = new Point(38, 72);
             txtDataName.Name = "txtDataName";
             txtDataName.Size = new Size(143, 23);
             txtDataName.TabIndex = 1;
@@ -62,7 +63,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(37, 39);
+            label1.Location = new Point(38, 54);
             label1.Name = "label1";
             label1.Size = new Size(101, 15);
             label1.TabIndex = 3;
@@ -71,7 +72,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(186, 39);
+            label2.Location = new Point(187, 54);
             label2.Name = "label2";
             label2.Size = new Size(62, 15);
             label2.TabIndex = 4;
@@ -79,7 +80,7 @@
             // 
             // btnMakePie
             // 
-            btnMakePie.Location = new Point(453, 57);
+            btnMakePie.Location = new Point(390, 72);
             btnMakePie.Name = "btnMakePie";
             btnMakePie.Size = new Size(75, 23);
             btnMakePie.TabIndex = 5;
@@ -91,7 +92,7 @@
             // 
             lstData.FormattingEnabled = true;
             lstData.ItemHeight = 15;
-            lstData.Location = new Point(37, 136);
+            lstData.Location = new Point(38, 151);
             lstData.Name = "lstData";
             lstData.Size = new Size(125, 214);
             lstData.TabIndex = 6;
@@ -100,7 +101,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(37, 118);
+            label3.Location = new Point(38, 133);
             label3.Name = "label3";
             label3.Size = new Size(58, 15);
             label3.TabIndex = 7;
@@ -108,7 +109,7 @@
             // 
             // btnRemoveItem
             // 
-            btnRemoveItem.Location = new Point(37, 356);
+            btnRemoveItem.Location = new Point(38, 371);
             btnRemoveItem.Name = "btnRemoveItem";
             btnRemoveItem.Size = new Size(91, 23);
             btnRemoveItem.TabIndex = 8;
@@ -118,7 +119,7 @@
             // 
             // txtDataValue
             // 
-            txtDataValue.Location = new Point(188, 57);
+            txtDataValue.Location = new Point(189, 72);
             txtDataValue.Name = "txtDataValue";
             txtDataValue.Size = new Size(60, 23);
             txtDataValue.TabIndex = 9;
@@ -126,24 +127,34 @@
             // lblMessages
             // 
             lblMessages.AutoSize = true;
-            lblMessages.Location = new Point(37, 93);
+            lblMessages.Location = new Point(38, 108);
             lblMessages.Name = "lblMessages";
             lblMessages.Size = new Size(0, 15);
             lblMessages.TabIndex = 10;
             // 
             // picBoxPie
             // 
-            picBoxPie.Location = new Point(227, 136);
+            picBoxPie.Location = new Point(228, 151);
             picBoxPie.Name = "picBoxPie";
             picBoxPie.Size = new Size(237, 214);
             picBoxPie.TabIndex = 11;
             picBoxPie.TabStop = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(38, 19);
+            label4.Name = "label4";
+            label4.Size = new Size(487, 15);
+            label4.TabIndex = 12;
+            label4.Text = "Enter your data name and number value. Once you are satisfied with your inputs MAKE PIE!";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(680, 450);
+            Controls.Add(label4);
             Controls.Add(picBoxPie);
             Controls.Add(lblMessages);
             Controls.Add(txtDataValue);
@@ -175,5 +186,6 @@
         private TextBox txtDataValue;
         private Label lblMessages;
         private PictureBox picBoxPie;
+        private Label label4;
     }
 }

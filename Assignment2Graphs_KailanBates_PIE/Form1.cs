@@ -34,19 +34,26 @@ namespace Assignment2Graphs_KailanBates_PIE
             {
                 if (float.TryParse(inputValue, out float value))
                 {
-
-                    DataInput input = new DataInput(inputName, value);
-                    Pie.AddNewData(input);
-                    lblMessages.Text = input.Name + input.Value.ToString();
-                    lstData.Items.Clear();
-                    foreach(DataInput data in Pie.DataInputs)
+                    if(value >= 0)
                     {
-                        lstData.Items.Add(data.Name + ": " + data.Value.ToString());
-                    }
-                    txtDataName.Text = "";
-                    txtDataValue.Text = "";
+                        DataInput input = new DataInput(inputName, value);
+                        Pie.AddNewData(input);
+                        lblMessages.Text = input.Name + input.Value.ToString();
+                        lstData.Items.Clear();
+                        foreach (DataInput data in Pie.DataInputs)
+                        {
+                            lstData.Items.Add(data.Name + ": " + data.Value.ToString());
+                        }
+                        txtDataName.Text = "";
+                        txtDataValue.Text = "";
 
-                    // lstData.Items.Add(input.Name + ": " + input.Value.ToString());
+                        // lstData.Items.Add(input.Name + ": " + input.Value.ToString());
+                    }
+                    else
+                    {
+                        lblMessages.Text = "Please do not input negative values!";
+                    }
+
 
                 }
                 else

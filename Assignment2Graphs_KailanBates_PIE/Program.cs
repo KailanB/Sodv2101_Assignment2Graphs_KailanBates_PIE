@@ -9,11 +9,11 @@ namespace Assignment2Graphs_KailanBates_PIE
         static void Main()
         {
             // for testing
-            Pie.AddNewData(new DataInput("Fish", 5));
-            Pie.AddNewData(new DataInput("Cats", 5));
-            Pie.AddNewData(new DataInput("Dogs", 5));
-            Pie.AddNewData(new DataInput("Rats", 5));
-            Pie.AddNewData(new DataInput("Horses", 5));
+            //Pie.AddNewData(new DataInput("Fish", 5));
+            //Pie.AddNewData(new DataInput("Cats", 5));
+            //Pie.AddNewData(new DataInput("Dogs", 5));
+            //Pie.AddNewData(new DataInput("Rats", 5));
+            //Pie.AddNewData(new DataInput("Horses", 5));
 
 
             // To customize application configuration such as set high DPI settings or default font,
